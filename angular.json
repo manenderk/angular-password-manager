@@ -29,6 +29,7 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
+              "src/assets/libraries/@fortawesome/css/all.min.css",
               "src/styles.scss"
             ],
             "scripts": []
