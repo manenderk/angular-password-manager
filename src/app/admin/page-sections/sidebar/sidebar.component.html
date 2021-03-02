@@ -24,7 +24,7 @@
       <i *ngIf="!currentUser?.photoURL" class="fas fa-3x fa-user"></i>
     </a>
     <div class="mt-4">
-      <h5 class="text-white mb-3">{{currentUser?.displayName}}</h5>
+      <h5 class="text-white mb-3">{{currentUser?.displayName | titlecase}}</h5>
       <!-- <span class="d-block text-sm text-white opacity-8 mb-3">Web Architect</span> -->
       <a href="#" class="btn btn-sm btn-white btn-icon rounded-pill shadow hover-translate-y-n3">
         <span class="btn-inner--icon"><i class="fas fa-coins"></i></span>
