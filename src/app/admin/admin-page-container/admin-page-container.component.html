@@ -1,9 +1,12 @@
 <div class="application application-offset">
   <div class="container-fluid container-application">
     <!-- Sidenav -->
-    <app-sidebar></app-sidebar>
+    <div class="sidenav" id="sidenav-main">
+      <app-sidebar></app-sidebar>
+    </div>
     <!-- Content -->
     <div class="main-content position-relative">
+      <!-- Main nav -->
       <app-header></app-header>
       <!-- Page content -->
       <router-outlet></router-outlet>
@@ -12,5 +15,3 @@
     </div>
   </div>
 </div>
-
-<router-outlet></router-outlet>

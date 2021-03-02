@@ -6,6 +6,8 @@ import { AdminPageContainerComponent } from './admin-page-container/admin-page-c
 import { HeaderComponent } from './page-sections/header/header.component';
 import { FooterComponent } from './page-sections/footer/footer.component';
 import { SidebarComponent } from './page-sections/sidebar/sidebar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AddEditCredentialsComponent } from './add-edit-credentials/add-edit-credentials.component';
 
 const routes: Routes = [
   {
@@ -15,13 +17,25 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent
+      },
+      {
+        path: 'credential/add',
+        component: AddEditCredentialsComponent
+      },
+      {
+        path: 'credential/edit/:id',
+        component: AddEditCredentialsComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
       }
     ]
   }
 ]
 
 @NgModule({
-  declarations: [DashboardComponent, AdminPageContainerComponent, HeaderComponent, FooterComponent, SidebarComponent],
+  declarations: [DashboardComponent, AdminPageContainerComponent, HeaderComponent, FooterComponent, SidebarComponent, ProfileComponent, AddEditCredentialsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)

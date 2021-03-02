@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import firebase from 'firebase';
+import { SubSink } from 'subsink';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  currentUser: firebase.User = null;
+  private subsink = new SubSink();
+
+  constructor(
+    private auth: AngularFireAuth,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.subsink.sink = this.auth.user.subscribe(user => {
+      this.currentUser = user;
+    })
+  }
+
+  ngOnDestroy() {
+    this.subsink.unsubscribe();
+  }
+
+  doLogout() {
+    this.auth.signOut();
+    this.router.navigate(['/']);
   }
 
 }
