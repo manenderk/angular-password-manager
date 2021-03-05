@@ -1,37 +1,29 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { SubSink } from 'subsink';
-import firebase from 'firebase';
+import { Component, OnInit } from '@angular/core';
+import firebase from 'firebase/app';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
 
 
   currentUser: firebase.User = null;
-  private subsink = new SubSink();
 
   constructor(
-    private auth: AngularFireAuth,
+    private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.subsink.sink = this.auth.user.subscribe(user => {
-      this.currentUser = user;
-      console.log(this.currentUser);
-    })
+    this.currentUser = this.authService.user;
   }
 
-  ngOnDestroy() {
-    this.subsink.unsubscribe();
-  }
 
   async doLogout() {
-    await this.auth.signOut();
+    await this.authService.doLogout();
     this.router.navigate(['/']);
   }
 

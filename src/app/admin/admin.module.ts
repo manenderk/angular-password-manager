@@ -8,6 +8,8 @@ import { FooterComponent } from './page-sections/footer/footer.component';
 import { SidebarComponent } from './page-sections/sidebar/sidebar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AddEditCredentialsComponent } from './add-edit-credentials/add-edit-credentials.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TagInputModule } from 'ngx-chips';
 
 const routes: Routes = [
   {
@@ -38,7 +40,10 @@ const routes: Routes = [
   declarations: [DashboardComponent, AdminPageContainerComponent, HeaderComponent, FooterComponent, SidebarComponent, ProfileComponent, AddEditCredentialsComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
+    TagInputModule
   ]
 })
 export class AdminModule { }

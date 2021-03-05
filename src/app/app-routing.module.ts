@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { IsLoggedInGuard } from './gaurds/is-logged-in.guard';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule),
-    canActivate: [AngularFireAuthGuard]
+    canActivate: [IsLoggedInGuard]
   }
 ];
 

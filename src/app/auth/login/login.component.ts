@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import firebase from 'firebase/app';
+import { AuthService } from 'src/app/services/auth.service';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -14,12 +13,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subsink = new SubSink();
 
   constructor(
-    private auth: AngularFireAuth,
+    private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.subsink.sink = this.auth.user.subscribe(user => {
+    this.subsink.sink = this.authService.userSub.subscribe(user => {
       if (user) {
         this.router.navigate(['/admin']);
       }
@@ -31,10 +30,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   login(provider: string): void {
-    if (provider === 'google') {
-      this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    } else if (provider === 'microsoft') {
-      this.auth.signInWithPopup(new firebase.auth.OAuthProvider('microsoft.com'))
-    }
+    this.authService.doLogin(provider);
   }
 }
