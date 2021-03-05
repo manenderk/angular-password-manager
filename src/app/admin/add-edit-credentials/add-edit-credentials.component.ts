@@ -1,39 +1,28 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CredentialService } from 'src/app/services/credential.service';
 import firebase from 'firebase/app';
-import { SubSink } from 'subsink';
 import { Credential } from 'src/app/models/credential.model';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-add-edit-credentials',
   templateUrl: './add-edit-credentials.component.html',
   styleUrls: ['./add-edit-credentials.component.scss']
 })
-export class AddEditCredentialsComponent implements OnInit, OnDestroy {
+export class AddEditCredentialsComponent implements OnInit {
 
   currentUser: firebase.User = null;
   crendential: Credential = null;
   credFormGroup: FormGroup;
 
-  private subsink = new SubSink();
-
   constructor(
-    private auth: AngularFireAuth,
+    private authService: AuthService,
     private credService: CredentialService
   ) { }
 
   ngOnInit(): void {
-
-    this.subsink.sink = this.auth.user.subscribe(user => {
-      this.currentUser = user;
-    })
-
+    this.currentUser = this.authService.getUser();
     this.initializeFormGroup();
-  }
-
-  ngOnDestroy() {
-    this.subsink.unsubscribe();
   }
 
   initializeFormGroup() {

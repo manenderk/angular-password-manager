@@ -12,7 +12,7 @@ export class AuthService {
   private localKey = 'pmAU';
   private subsink = new SubSink();
 
-  user: firebase.User | null;
+  private user: firebase.User | null;
   userSub: Subject<firebase.User | null> = new Subject();
 
   constructor(
@@ -25,6 +25,10 @@ export class AuthService {
     this.subsink.sink = this.auth.user.subscribe(user => {
       this.updateCurrentUser(user);
     })
+  }
+
+  getUser() {
+    return this.user;
   }
 
   doLogin(provider: string) {

@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentUser = this.authService.user;
+    this.currentUser = this.authService.getUser();
   }
 
   doLogout() {
