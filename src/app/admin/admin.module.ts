@@ -10,6 +10,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { AddEditCredentialsComponent } from './add-edit-credentials/add-edit-credentials.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TagInputModule } from 'ngx-chips';
+import { ManageRootPassComponent } from './manage-root-pass/manage-root-pass.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 const routes: Routes = [
   {
@@ -37,13 +39,14 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [DashboardComponent, AdminPageContainerComponent, HeaderComponent, FooterComponent, SidebarComponent, ProfileComponent, AddEditCredentialsComponent],
+  declarations: [DashboardComponent, AdminPageContainerComponent, HeaderComponent, FooterComponent, SidebarComponent, ProfileComponent, AddEditCredentialsComponent, ManageRootPassComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    TagInputModule
+    TagInputModule,
+    ClipboardModule
   ]
 })
 export class AdminModule { }

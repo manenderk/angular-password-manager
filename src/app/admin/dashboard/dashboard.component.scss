@@ -1,0 +1,16 @@
+.cred-row {
+  th, td {
+    padding-bottom: 8px;
+  }
+
+  .canCopy {
+    cursor: pointer;
+  }
+}
+
+.badge-row {
+  td {
+    border-top: none;
+    padding-top: 0;
+  }
+}

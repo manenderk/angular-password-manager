@@ -1,3 +1,5 @@
+import firebase from 'firebase/app';
+
 export interface Credential {
   id?: string;
   url: string;
@@ -7,4 +9,6 @@ export interface Credential {
   environment: string;
   tags: string[];
   otherInfo: string;
+  createdAt?: firebase.firestore.Timestamp;
+  modifiedAt?: firebase.firestore.Timestamp;
 }

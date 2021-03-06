@@ -24,8 +24,10 @@
     "bootstrap": "^4.6.0",
     "firebase": "^7.0 || ^8.0",
     "ngx-chips": "^2.2.2",
+    "ngx-clipboard": "^14.0.1",
     "rxjs": "~6.6.0",
     "subsink": "^1.0.2",
+    "sweetalert2": "^10.15.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

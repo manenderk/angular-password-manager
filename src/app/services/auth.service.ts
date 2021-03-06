@@ -1,8 +1,10 @@
 import { Injectable} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import firebase from 'firebase/app';
 import { Subject } from 'rxjs';
 import { SubSink } from 'subsink';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,8 @@ export class AuthService {
   userSub: Subject<firebase.User | null> = new Subject();
 
   constructor(
-    private auth: AngularFireAuth
+    private auth: AngularFireAuth,
+    private router: Router
   ) {
     const user = this.getUserFromLocalStorage();
     if (user) {
@@ -24,6 +27,11 @@ export class AuthService {
     }
     this.subsink.sink = this.auth.user.subscribe(user => {
       this.updateCurrentUser(user);
+
+      if (!user && this.user) {
+        Swal.fire('Info', 'You have been logged out. Please login again to continue', 'info');
+        this.router.navigate(['/']);
+      }
     })
   }
 
