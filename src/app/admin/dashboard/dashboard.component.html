@@ -24,7 +24,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text bg-transparent"><i class="fas fa-search"></i></span>
           </div>
-          <input type="text" class="form-control form-control-flush" placeholder="Type and hit enter ...">
+          <input type="text" class="form-control form-control-flush" placeholder="Search..." [(ngModel)]="searchQuery">
           <div class="input-group-append">
             <a href="#" class="input-group-text bg-transparent" data-action="search-close" data-target="#actions-search"><i class="fas fa-times"></i></a>
           </div>
@@ -41,13 +41,13 @@
                 <i class="fas fa-filter"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" [ngClass]="{active: currentSortBy === 'newest'}" (click)="changeSort('newest')">
                   <i class="fas fa-sort-amount-down"></i>Newest
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" [ngClass]="{active: currentSortBy === 'a-z'}" (click)="changeSort('a-z')">
                   <i class="fas fa-sort-alpha-down"></i>From A-Z
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" [ngClass]="{active: currentSortBy === 'z-a'}" (click)="changeSort('z-a')">
                   <i class="fas fa-sort-alpha-up"></i>From Z-A
                 </a>
               </div>
@@ -70,7 +70,7 @@
           </tr>
         </thead>
         <tbody class="list">
-          <ng-container *ngFor="let cred of credentials">
+          <ng-container *ngFor="let cred of credentials | filterObjectByMatchingAnyKeyValue: searchQuery">
             <tr class="cred-row">
               <th scope="row" class="canCopy" (click)="copy(cred, 'name')">
                 {{cred.name}}

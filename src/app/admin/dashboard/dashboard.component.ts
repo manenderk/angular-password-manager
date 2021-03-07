@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { Credential } from 'src/app/models/credential.model';
 import { CredentialService } from 'src/app/services/credential.service';
+import { sortArrayOfObjectByKey } from 'src/app/utils/functions/sortArrayOfObjectByKey';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,7 +12,9 @@ import Swal from 'sweetalert2';
 })
 export class DashboardComponent implements OnInit {
 
+  currentSortBy = 'newest';
   credentials: Credential[] = [];
+  searchQuery = '';
 
   constructor(
     private credService: CredentialService,
@@ -25,6 +28,8 @@ export class DashboardComponent implements OnInit {
   getCredentials() {
     this.credService.getAllCredentials().subscribe(creds => {
       this.credentials = creds;
+      this.changeSort(this.currentSortBy);
+      console.log(this.credentials);
     });
   }
 
@@ -53,5 +58,19 @@ export class DashboardComponent implements OnInit {
         await this.credService.deleteCredentials(id);
       }
     })
+  }
+
+  changeSort(by = 'newest') {
+
+    this.currentSortBy = by;
+
+    if (by === 'newest') {
+      this.credentials = sortArrayOfObjectByKey(this.credentials, 'createdAt', false);
+    } else if (by === 'a-z') {
+      this.credentials = sortArrayOfObjectByKey(this.credentials, 'name', true);
+    } else if (by === 'z-a') {
+      this.credentials = sortArrayOfObjectByKey(this.credentials, 'name', false);
+    }
+
   }
 }

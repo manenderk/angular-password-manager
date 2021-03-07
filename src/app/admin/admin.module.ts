@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TagInputModule } from 'ngx-chips';
 import { ManageRootPassComponent } from './manage-root-pass/manage-root-pass.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { PipesModule } from '../utils/pipes/pipes.module';
 
 const routes: Routes = [
   {
@@ -46,7 +47,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     TagInputModule,
-    ClipboardModule
+    ClipboardModule,
+    PipesModule
   ]
 })
 export class AdminModule { }
