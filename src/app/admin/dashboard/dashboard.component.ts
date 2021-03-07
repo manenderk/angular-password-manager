@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { Credential } from 'src/app/models/credential.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CredentialService } from 'src/app/services/credential.service';
+import { RootPassService } from 'src/app/services/root-pass.service';
 import { sortArrayOfObjectByKey } from 'src/app/utils/functions/sortArrayOfObjectByKey';
+import { SubSink } from 'subsink';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,20 +19,26 @@ export class DashboardComponent implements OnInit {
   credentials: Credential[] = [];
   searchQuery = '';
 
+  private subsink = new SubSink();
+
   constructor(
+    private rootPassService: RootPassService,
     private credService: CredentialService,
     private clipService: ClipboardService
   ) { }
 
   ngOnInit(): void {
-    this.getCredentials();
+    this.subsink.sink = this.rootPassService.getRootPass().subscribe(pass => {
+      if (pass) {
+        this.getCredentials();
+      }
+    });
   }
 
   getCredentials() {
-    this.credService.getAllCredentials().subscribe(creds => {
+    this.subsink.sink = this.credService.getAllCredentials().subscribe(creds => {
       this.credentials = creds;
       this.changeSort(this.currentSortBy);
-      console.log(this.credentials);
     });
   }
 

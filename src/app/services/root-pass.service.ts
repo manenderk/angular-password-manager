@@ -8,8 +8,8 @@ export class RootPassService {
 
   showRootPassInputModal: BehaviorSubject<boolean> = new BehaviorSubject(false)
 
-  private rootPass: string | null = 'kMan@123';
-  private rootPassSubj: BehaviorSubject<string | null> = new BehaviorSubject('kMan@123d');
+  private rootPass: string | null = '';
+  private rootPassSubj: BehaviorSubject<string | null> = new BehaviorSubject('');
 
   constructor() { }
 

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CredentialService } from 'src/app/services/credential.service';
 import firebase from 'firebase/app';
 import { Credential } from 'src/app/models/credential.model';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SubSink } from 'subsink';
 @Component({
   selector: 'app-add-edit-credentials',
@@ -23,7 +23,8 @@ export class AddEditCredentialsComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private credService: CredentialService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -47,10 +48,10 @@ export class AddEditCredentialsComponent implements OnInit {
   initializeFormGroup() {
     this.credFormGroup = new FormGroup({
       url: new FormControl(this.crendential?.url),
-      name: new FormControl(this.crendential?.name),
-      userId: new FormControl(this.crendential?.userId),
-      password: new FormControl(this.crendential?.password),
-      passwordConfirm: new FormControl(null),
+      name: new FormControl(this.crendential?.name, Validators.required),
+      userId: new FormControl(this.crendential?.userId, Validators.required),
+      password: new FormControl(this.crendential?.password, Validators.required),
+      passwordConfirm: new FormControl(this.crendential?.password, Validators.required),
       environment: new FormControl(this.crendential?.environment),
       tags: new FormControl(this.crendential?.tags),
       otherInfo: new FormControl(this.crendential?.otherInfo)
@@ -69,6 +70,7 @@ export class AddEditCredentialsComponent implements OnInit {
 
       this.credFormGroup.reset();
       Swal.fire('Success', 'Credential saved', 'success');
+      this.router.navigate(['/admin']);
     }
   }
 

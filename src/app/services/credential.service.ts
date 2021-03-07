@@ -6,6 +6,9 @@ import { AuthService } from './auth.service';
 import { RootPassService } from './root-pass.service';
 import { map } from 'rxjs/operators';
 import firebase from 'firebase/app';
+import * as CryptoJS from 'crypto-js';
+//import AES from 'crypto/'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +17,14 @@ export class CredentialService {
   private userId: string | null = null;
   private rootPassword: string | null = null;
   private collectionName = '';
+  private skippedKeys = [
+    'createdAt',
+    'modifiedAt',
+    'id'
+  ];
+  private objectTypeKeys = [
+    'tags'
+  ];
 
   constructor(
     private authService: AuthService,
@@ -24,7 +35,6 @@ export class CredentialService {
     const user = this.authService.getUser();
     this.userId = user.uid;
     this.collectionName = 'creds-' + this.userId;
-
     this.authService.userSub.subscribe(user => {
       if (user) {
         this.userId = user.uid;
@@ -79,7 +89,6 @@ export class CredentialService {
     cred.modifiedAt = firebase.firestore.Timestamp.now();
     cred = this.encrypt(cred);
 
-    console.log(cred, this.collectionName);
     return this.fireStore.collection<Credential>(
       this.collectionName
     ).add(cred);
@@ -89,7 +98,6 @@ export class CredentialService {
     const credDoc = this.getCredDocument(cred.id);
     cred.modifiedAt = firebase.firestore.Timestamp.now();
 
-    console.log(cred, this.collectionName);
     return credDoc.update(cred);
   }
 
@@ -100,11 +108,49 @@ export class CredentialService {
 
   encrypt(cred: Credential): Credential {
 
+    if (!cred) {
+      return;
+    }
+
+    if (!this.rootPassword) {
+      throw new Error('root password not available');
+    }
+
+    for (const key in cred) {
+      if (Object.prototype.hasOwnProperty.call(cred, key)) {
+        if (!this.skippedKeys.includes(key)) {
+          let unencryptedData = cred[key];
+          if (this.objectTypeKeys.includes(key)) {
+            unencryptedData = JSON.stringify(unencryptedData);
+          }
+          cred[key] = CryptoJS.AES.encrypt(unencryptedData, this.rootPassword).toString();
+        }
+      }
+    }
     return cred;
   }
 
   decrypt(cred: Credential): Credential {
+    if (!cred) {
+      return;
+    }
 
+    if (!this.rootPassword) {
+      throw new Error('root password not available');
+    }
+
+    for (const key in cred) {
+      if (Object.prototype.hasOwnProperty.call(cred, key)) {
+        if (!this.skippedKeys.includes(key)) {
+          let encryptedData = cred[key];
+
+          cred[key] = CryptoJS.AES.decrypt(encryptedData, this.rootPassword).toString(CryptoJS.enc.Utf8);
+          if (this.objectTypeKeys.includes(key)) {
+            cred[key] = JSON.parse(cred[key]);
+          }
+        }
+      }
+    }
     return cred;
   }
 
