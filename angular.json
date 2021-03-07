@@ -35,6 +35,9 @@
             "scripts": [
               "src/assets/js/purpose.core.js",
               "src/assets/js/purpose.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "crypto-js"
             ]
           },
           "configurations": {

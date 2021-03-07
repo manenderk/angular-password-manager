@@ -56,7 +56,7 @@ export class ManageRootPassComponent implements OnInit, AfterViewInit, OnDestroy
       }
     })
 
-    this.subsink.sink = this.rootPassService.getRootPass().subscribe(pass => {
+    this.subsink.sink = this.rootPassService.getRootPassSubj().subscribe(pass => {
       if (!pass) {
         this.openModal();
       }
@@ -68,7 +68,7 @@ export class ManageRootPassComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   savePassword() {
-    this.rootPassService.updateRootPass(this.passFormGroup.value.pass1);
+    this.rootPassService.setRootPass(this.passFormGroup.value.pass1);
     this.closeModal();
   }
 

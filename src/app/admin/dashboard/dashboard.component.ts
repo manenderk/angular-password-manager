@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.subsink.sink = this.rootPassService.getRootPass().subscribe(pass => {
+    this.subsink.sink = this.rootPassService.getRootPassSubj().subscribe(pass => {
       if (pass) {
         this.getCredentials();
       }
