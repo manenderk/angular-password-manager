@@ -1,54 +1,63 @@
 <!-- Button trigger modal -->
-<button type="button" class="d-none" data-toggle="modal" data-target="#root-pass-modal" data-keyboard="false" data-backdrop="static"
-  #openPasswordModal
->Set Password</button>
+<button type="button" class="d-none" data-toggle="modal" data-target="#root-pass-modal" data-keyboard="false"
+  data-backdrop="static" #openPasswordModal>Set Password</button>
 
 <!-- Modal -->
-<div class="modal fade" id="root-pass-modal" tabindex="-1" role="dialog" aria-labelledby="root-pass-modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <form [formGroup]="passFormGroup">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="modal-title d-flex align-items-center" id="modal-title-change-username">
-                        <div>
-                            <div class="icon icon-sm icon-shape icon-info rounded-circle shadow mr-3">
-                                <i class="fas fa-key"></i>
-                            </div>
-                        </div>
-                        <div>
-                            <h6 class="mb-0">Provide Root Password</h6>
-                        </div>
-                    </div>
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div class="modal fade" id="root-pass-modal" tabindex="-1" role="dialog" aria-labelledby="root-pass-modal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <form [formGroup]="passFormGroup">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title d-flex align-items-center" id="modal-title-change-username">
+            <div>
+              <div class="icon icon-sm icon-shape icon-info rounded-circle shadow mr-3">
+                <i class="fas fa-key"></i>
+              </div>
+            </div>
+            <div>
+              <h6 class="mb-0">Provide Root Password</h6>
+            </div>
+          </div>
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button> -->
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="form-control-label">Enter password</label>
+                <div class="input-group input-group-merge">
+                  <input [type]="viewPass.pass1 ? 'text' : 'password'" class="form-control" formControlName="pass1">
+                  <div class="input-group-append cursor-pointer" (click)="viewPass.pass1 = !viewPass.pass1">
+                    <span class="input-group-text"><i class="fas fa-eye"></i></span>
+                  </div>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="form-control-label">Enter password</label>
-                                <input class="form-control" type="password" formControlName="pass1">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label class="form-control-label">Enter password again</label>
-                                <input class="form-control" type="password" formControlName="pass2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="px-5 pt-4 mt-4 delimiter-top text-center"
-                      *ngIf="errorMessage"
-                    >
-                        <p class="text-danger text-sm">{{errorMessage}}</p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary rounded-pill" (click)="savePassword()" [attr.disabled]="errorMessage || passFormGroup.invalid ? 'disabled' : null">Done</button>
-                  <button type="button" class="d-none" data-dismiss="modal" #closePasswordModal>Done</button>
-                </div>
+              </div>
             </div>
-        </form>
-    </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="form-control-label">Enter password again</label>
+                <div class="input-group input-group-merge">
+                  <input [type]="viewPass.pass2 ? 'text' : 'password'" class="form-control" formControlName="pass2">
+                  <div class="input-group-append cursor-pointer" (click)="viewPass.pass2 = !viewPass.pass2">
+                    <span class="input-group-text"><i class="fas fa-eye"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="px-5 pt-4 mt-4 delimiter-top text-center" *ngIf="errorMessage">
+            <p class="text-danger text-sm">{{errorMessage}}</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary rounded-pill" (click)="savePassword()"
+            [attr.disabled]="errorMessage || passFormGroup.invalid ? 'disabled' : null">Done</button>
+          <button type="button" class="d-none" data-dismiss="modal" #closePasswordModal>Done</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

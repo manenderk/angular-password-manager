@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -9,6 +10,8 @@ import { SubSink } from 'subsink';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
+
+  env = environment;
 
   private subsink = new SubSink();
 

@@ -15,6 +15,10 @@ export class ManageRootPassComponent implements OnInit, AfterViewInit, OnDestroy
 
   errorMessage = '';
   passFormGroup: FormGroup;
+  viewPass = {
+    pass1: false,
+    pass2: false
+  };
 
   private isModalOpenend = false;
   private subsink = new SubSink();

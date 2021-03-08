@@ -17,6 +17,11 @@ export class AddEditCredentialsComponent implements OnInit {
   currentUser: firebase.User = null;
   crendential: Credential | null = null;
   credFormGroup: FormGroup;
+  viewPass = {
+    pass1: false,
+    pass2: false
+  };
+
 
   private subsink = new SubSink();
 
