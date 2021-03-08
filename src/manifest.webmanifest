@@ -1,12 +1,18 @@
 {
-  "name": "password-manager",
-  "short_name": "password-manager",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "PassKeep",
+  "short_name": "PassKeep",
+  "theme_color": "#6e00ff",
+  "background_color": "#6e00ff",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
   "icons": [
+    {
+      "src": "assets/icons/icon-60x60.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
     {
       "src": "assets/icons/icon-72x72.png",
       "sizes": "72x72",
@@ -14,8 +20,26 @@
       "purpose": "maskable any"
     },
     {
+      "src": "assets/icons/icon-76x76.png",
+      "sizes": "76x76",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
       "src": "assets/icons/icon-96x96.png",
       "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-114x114.png",
+      "sizes": "114x114",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-120x120.png",
+      "sizes": "120x120",
       "type": "image/png",
       "purpose": "maskable any"
     },
@@ -34,6 +58,12 @@
     {
       "src": "assets/icons/icon-152x152.png",
       "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-180x180.png",
+      "sizes": "180x180",
       "type": "image/png",
       "purpose": "maskable any"
     },
