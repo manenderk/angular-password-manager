@@ -23,3 +23,18 @@ body {
   min-height: 80vh;
 }
 
+.text-ripple {
+  background-position: center;
+  transition: background 0.8s;
+
+  &:hover {
+    background: #FAFAFA radial-gradient(circle, transparent 1%, #FAFAFA 1%) center/15000%;
+  }
+
+  &:active {
+    background-color: #BDBDBD;
+    background-size: 100%;
+    transition: background 0s;
+  }
+}
+

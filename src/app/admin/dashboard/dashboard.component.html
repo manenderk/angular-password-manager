@@ -72,16 +72,16 @@
         <tbody class="list">
           <ng-container *ngFor="let cred of credentials | filterObjectByMatchingAnyKeyValue: searchQuery">
             <tr class="cred-row">
-              <th scope="row" class="canCopy" (click)="copy(cred, 'name')">
+              <th scope="row" class="canCopy text-ripple" (click)="copy(cred, 'name')">
                 {{cred.name}}
               </th>
-              <td class="canCopy" (click)="copy(cred, 'url')">
+              <td class="canCopy text-ripple" (click)="copy(cred, 'url')">
                 {{cred.url}}
               </td>
-              <td class="canCopy" (click)="copy(cred, 'userId')">
+              <td class="canCopy text-ripple" (click)="copy(cred, 'userId')">
                 {{cred.userId}}
               </td>
-              <td class="canCopy" (click)="copy(cred, 'password')">
+              <td class="canCopy text-ripple" (click)="copy(cred, 'password')">
                 *****
               </td>
               <td>
