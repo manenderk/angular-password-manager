@@ -75,8 +75,10 @@
               <th scope="row" class="canCopy text-ripple" (click)="copy(cred, 'name')">
                 {{cred.name}}
               </th>
-              <td class="canCopy text-ripple" (click)="copy(cred, 'url')">
-                {{cred.url}}
+              <td class="canCopy text-ripple">
+                <span (click)="copy(cred, 'url')">{{cred.url}}</span>
+                &nbsp;&nbsp;
+                <a [href]="cred.url" target="_blank"><i class="fas fa-external-link-alt"></i></a>
               </td>
               <td class="canCopy text-ripple" (click)="copy(cred, 'userId')">
                 {{cred.userId}}
