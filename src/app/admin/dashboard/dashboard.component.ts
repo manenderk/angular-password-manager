@@ -39,7 +39,6 @@ export class DashboardComponent implements OnInit {
     this.subsink.sink = this.credService.getAllCredentials().subscribe(creds => {
       this.credentials = creds;
       this.changeSort(this.currentSortBy);
-      console.log(this.credentials);
     });
   }
 
