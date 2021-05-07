@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { Credential } from 'src/app/models/credential.model';
-import { AuthService } from 'src/app/services/auth.service';
 import { CredentialService } from 'src/app/services/credential.service';
 import { RootPassService } from 'src/app/services/root-pass.service';
 import { sortArrayOfObjectByKey } from 'src/app/utils/functions/sortArrayOfObjectByKey';
 import { SubSink } from 'subsink';
+import firebase from 'firebase/app';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class DashboardComponent implements OnInit {
 
-  currentSortBy = 'newest';
+  currentSortBy = 'usage';
   credentials: Credential[] = [];
   searchQuery = '';
 
@@ -39,11 +39,22 @@ export class DashboardComponent implements OnInit {
     this.subsink.sink = this.credService.getAllCredentials().subscribe(creds => {
       this.credentials = creds;
       this.changeSort(this.currentSortBy);
+      console.log(this.credentials);
     });
   }
 
   copy(cred: Credential, key: string) {
     this.clipService.copy(cred[key]);
+
+    const now = firebase.firestore.Timestamp.now();
+    const secDiff = now.seconds - cred.modifiedAt.seconds;
+
+    if (secDiff < 300) { // return if same credential is used in last 5 minutes.
+      return;
+    }
+
+    cred.useCount = cred.useCount ? ++cred.useCount : 1;
+    this.credService.updateCredential(cred);
   }
 
   deleteCred(id: string) {
@@ -72,8 +83,9 @@ export class DashboardComponent implements OnInit {
   changeSort(by = 'newest') {
 
     this.currentSortBy = by;
-
-    if (by === 'newest') {
+    if (by == 'usage') {
+      this.credentials = sortArrayOfObjectByKey(this.credentials,  'useCount', false);
+    } else if (by === 'newest') {
       this.credentials = sortArrayOfObjectByKey(this.credentials, 'createdAt', false);
     } else if (by === 'a-z') {
       this.credentials = sortArrayOfObjectByKey(this.credentials, 'name', true);
@@ -81,5 +93,9 @@ export class DashboardComponent implements OnInit {
       this.credentials = sortArrayOfObjectByKey(this.credentials, 'name', false);
     }
 
+  }
+
+  isArray(obj : any ) {
+    return Array.isArray(obj)
   }
 }

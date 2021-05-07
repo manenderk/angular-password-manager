@@ -41,6 +41,9 @@
                 <i class="fas fa-filter"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" [ngClass]="{active: currentSortBy === 'usage'}" (click)="changeSort('usage')">
+                  <i class="fas fa-sort-amount-down"></i>Usage
+                </a>
                 <a class="dropdown-item" [ngClass]="{active: currentSortBy === 'newest'}" (click)="changeSort('newest')">
                   <i class="fas fa-sort-amount-down"></i>Newest
                 </a>
@@ -104,7 +107,7 @@
 
             </tr>
             <tr class="badge-row">
-              <td colspan="6">
+              <td colspan="6" *ngIf="isArray(cred.tags)">
                 <span class="badge badge-primary rounded-pill mr-2"
                   *ngFor="let tag of cred.tags"
                 >{{tag}}</span>

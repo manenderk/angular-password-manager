@@ -59,7 +59,8 @@ export class AddEditCredentialsComponent implements OnInit {
       passwordConfirm: new FormControl(this.crendential?.password, Validators.required),
       environment: new FormControl(this.crendential?.environment),
       tags: new FormControl(this.crendential?.tags),
-      otherInfo: new FormControl(this.crendential?.otherInfo)
+      otherInfo: new FormControl(this.crendential?.otherInfo),
+      useCount: new FormControl(this.crendential?.useCount || 0)
     });
   }
 

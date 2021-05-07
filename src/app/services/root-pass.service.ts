@@ -25,7 +25,7 @@ export class RootPassService {
     this.rootPassword.next(pass);
   }
 
-  encrypt(obj: any, skippedKeys: string[] = [], objectTypeKeys: string[] = []): any {
+  encrypt(obj: any, skippedKeys: string[] = [], objectTypeKeys: string[] = [], numberTypeKeys: string[] = []): any {
 
     if (!obj) {
       return;
@@ -41,15 +41,22 @@ export class RootPassService {
           let unencryptedData = obj[key];
           if (objectTypeKeys.includes(key)) {
             unencryptedData = JSON.stringify(unencryptedData);
+          } else if (numberTypeKeys.includes(key)) {
+            unencryptedData = unencryptedData.toString();
           }
-          obj[key] = CryptoJS.AES.encrypt(unencryptedData, this.rootPassword.value).toString();
+          try {
+            obj[key] = CryptoJS.AES.encrypt(unencryptedData, this.rootPassword.value).toString();
+          } catch (e) {
+            console.log('encryption failure', key, obj[key], e);
+          }
+
         }
       }
     }
     return obj;
   }
 
-  decrypt(obj: any, skippedKeys: string[] = [], objectTypeKeys: string[] = []): any {
+  decrypt(obj: any, skippedKeys: string[] = [], objectTypeKeys: string[] = [], numberTypeKeys: string[] = []): any {
     if (!obj) {
       return;
     }
@@ -62,8 +69,12 @@ export class RootPassService {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
         if (!skippedKeys.includes(key)) {
           let encryptedData = obj[key];
+          try {
+            obj[key] = CryptoJS.AES.decrypt(encryptedData, this.rootPassword.value).toString(CryptoJS.enc.Utf8);
+          } catch (e) {
+            console.log('decryption failure', key, obj[key]), e;
+          }
 
-          obj[key] = CryptoJS.AES.decrypt(encryptedData, this.rootPassword.value).toString(CryptoJS.enc.Utf8);
           if (objectTypeKeys.includes(key)) {
             try {
               obj[key] = JSON.parse(obj[key]);
@@ -71,6 +82,8 @@ export class RootPassService {
               console.log(e);
               obj[key] = null;
             }
+          } else if (numberTypeKeys.includes(key)) {
+            obj[key] = parseFloat(obj[key]);
           }
         }
       }

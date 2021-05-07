@@ -24,6 +24,9 @@ export class CredentialService {
   private objectTypeKeys = [
     'tags'
   ];
+  private numberTypeKeys = [
+    'useCount'
+  ];
 
   constructor(
     private authService: AuthService,
@@ -105,10 +108,10 @@ export class CredentialService {
   }
 
   private encryptCred(cred: Credential) : Credential {
-    return this.rootPassService.encrypt(cred, this.skippedKeys, this.objectTypeKeys);
+    return this.rootPassService.encrypt(cred, this.skippedKeys, this.objectTypeKeys, this.numberTypeKeys);
   }
 
   private decryptCred(cred: Credential): Credential {
-    return this.rootPassService.decrypt(cred, this.skippedKeys, this.objectTypeKeys);
+    return this.rootPassService.decrypt(cred, this.skippedKeys, this.objectTypeKeys, this.numberTypeKeys);
   }
 }

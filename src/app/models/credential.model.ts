@@ -9,6 +9,7 @@ export interface Credential {
   environment: string;
   tags: string[];
   otherInfo: string;
+  useCount: number;
   createdAt?: firebase.firestore.Timestamp;
   modifiedAt?: firebase.firestore.Timestamp;
 }
