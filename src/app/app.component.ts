@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { SubSink } from 'subsink';
+import { AppUpdateService } from './services/app-update.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private auth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private appUpdate: AppUpdateService
   ) {}
 
   async ngOnInit() {
@@ -25,6 +27,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.router.navigate(['/admin']);
       }
     })
+
+    this.appUpdate.checkForUpdates();
   }
 
   ngOnDestroy(): void {
