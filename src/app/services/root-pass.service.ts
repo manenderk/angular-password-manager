@@ -8,7 +8,7 @@ export class RootPassService {
 
   showRootPassInputModal: BehaviorSubject<boolean> = new BehaviorSubject(false)
 
-  private rootPassword: BehaviorSubject<string> = new BehaviorSubject(null);
+  private rootPassword: BehaviorSubject<string> = new BehaviorSubject('kMan@123d');
 
   constructor() { }
 

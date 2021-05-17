@@ -34,6 +34,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent
+      },
+      {
+        path: 'password-util',
+        loadChildren: () => import ('./password-util/password-util.module').then(mod => mod.PasswordUtilModule)
       }
     ]
   }
