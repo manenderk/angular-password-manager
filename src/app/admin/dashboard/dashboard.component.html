@@ -108,9 +108,10 @@
             </tr>
             <tr class="badge-row">
               <td colspan="6" *ngIf="isArray(cred.tags)">
-                <span class="badge badge-primary rounded-pill mr-2"
-                  *ngFor="let tag of cred.tags"
-                >{{tag}}</span>
+                <ng-container *ngFor="let tag of cred.tags">
+                  <span class="badge badge-primary rounded-pill mr-2 cursor-pointer" (click)="tagClicked(tag, cred)">{{tag}}</span>
+                </ng-container>
+
               </td>
             </tr>
           </ng-container>

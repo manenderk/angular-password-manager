@@ -42,20 +42,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  copy(cred: Credential, key: string) {
-    this.clipService.copy(cred[key]);
-
-    const now = firebase.firestore.Timestamp.now();
-    const secDiff = now.seconds - cred.modifiedAt.seconds;
-
-    if (secDiff < 300) { // return if same credential is used in last 5 minutes.
-      return;
-    }
-
-    cred.useCount = cred.useCount ? ++cred.useCount : 1;
-    this.credService.updateCredential(cred);
-  }
-
   deleteCred(id: string) {
 
     const swalWithBootstrapButtons = Swal.mixin({
@@ -96,5 +82,27 @@ export class DashboardComponent implements OnInit {
 
   isArray(obj : any ) {
     return Array.isArray(obj)
+  }
+
+  tagClicked(tag: string, cred: Credential) {
+    if (tag.toLowerCase() == 'ssh') {
+      const host = cred.url ? cred.url.replace('https:', '').replace('http://', '') : '';
+      const command = `ssh ${cred.userId}@${host}`;
+      this.clipService.copy(command);
+    }
+  }
+
+  copy(cred: Credential, key: string) {
+    this.clipService.copy(cred[key]);
+
+    const now = firebase.firestore.Timestamp.now();
+    const secDiff = now.seconds - cred.modifiedAt.seconds;
+
+    if (secDiff < 86400) { // return if same credential is used in last 24 hours
+      return;
+    }
+
+    cred.useCount = cred.useCount ? ++cred.useCount : 1;
+    this.credService.updateCredential(cred);
   }
 }
