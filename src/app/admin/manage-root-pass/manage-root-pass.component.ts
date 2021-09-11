@@ -16,8 +16,7 @@ export class ManageRootPassComponent implements OnInit, AfterViewInit, OnDestroy
   errorMessage = '';
   passFormGroup: FormGroup;
   viewPass = {
-    pass1: false,
-    pass2: false
+    pass1: false
   };
 
   private isModalOpenend = false;
@@ -29,8 +28,7 @@ export class ManageRootPassComponent implements OnInit, AfterViewInit, OnDestroy
 
   ngOnInit() {
     this.passFormGroup = new FormGroup({
-      pass1: new FormControl(null, Validators.required),
-      pass2: new FormControl(null, Validators.required)
+      pass1: new FormControl(null, Validators.required)
     });
 
     this.passFormGroup.valueChanges.subscribe(values => {
@@ -44,8 +42,6 @@ export class ManageRootPassComponent implements OnInit, AfterViewInit, OnDestroy
         this.errorMessage = 'Password should have atleast special character';
       } else if (values.pass1 && values.pass1.length < 8) {
         this.errorMessage = 'Password should be of atleast of 8 characters';
-      } else if (values.pass1 && values.pass2 && values.pass1 != values.pass2) {
-        this.errorMessage = 'Passwords are not same';
       } else {
         this.errorMessage = '';
       }

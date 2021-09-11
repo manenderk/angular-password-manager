@@ -6,7 +6,7 @@
 <div class="modal fade" id="root-pass-modal" tabindex="-1" role="dialog" aria-labelledby="root-pass-modal"
   aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <form [formGroup]="passFormGroup">
+    <form [formGroup]="passFormGroup" id="root-pass-form">
       <div class="modal-content">
         <div class="modal-header">
           <div class="modal-title d-flex align-items-center" id="modal-title-change-username">
@@ -27,7 +27,7 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label class="form-control-label">Enter password</label>
+                <label class="form-control-label">Enter your root password</label>
                 <div class="input-group input-group-merge">
                   <input [type]="viewPass.pass1 ? 'text' : 'password'" class="form-control" formControlName="pass1">
                   <div class="input-group-append cursor-pointer" (click)="viewPass.pass1 = !viewPass.pass1">
@@ -36,7 +36,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-12">
+            <!-- <div class="col-sm-12">
               <div class="form-group">
                 <label class="form-control-label">Enter password again</label>
                 <div class="input-group input-group-merge">
@@ -46,9 +46,9 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
-          <div class="px-5 pt-4 mt-4 delimiter-top text-center" *ngIf="errorMessage">
+          <div class="px-5 mt-2 pt-2 delimiter-top text-center" *ngIf="errorMessage">
             <p class="text-danger text-sm">{{errorMessage}}</p>
           </div>
         </div>
