@@ -19009,9 +19009,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const _c0 = ["openPasswordModal"];
 const _c1 = ["closePasswordModal"];
-function ManageRootPassComponent_div_35_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 27);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](1, "p", 28);
+function ManageRootPassComponent_div_26_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](1, "p", 27);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -19025,16 +19025,14 @@ class ManageRootPassComponent {
         this.rootPassService = rootPassService;
         this.errorMessage = '';
         this.viewPass = {
-            pass1: false,
-            pass2: false
+            pass1: false
         };
         this.isModalOpenend = false;
         this.subsink = new subsink__WEBPACK_IMPORTED_MODULE_0__.SubSink();
     }
     ngOnInit() {
         this.passFormGroup = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormGroup({
-            pass1: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormControl(null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required),
-            pass2: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormControl(null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required)
+            pass1: new _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormControl(null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required)
         });
         this.passFormGroup.valueChanges.subscribe(values => {
             if (values.pass1 && !values.pass1.match(/[a-z]/)) {
@@ -19051,9 +19049,6 @@ class ManageRootPassComponent {
             }
             else if (values.pass1 && values.pass1.length < 8) {
                 this.errorMessage = 'Password should be of atleast of 8 characters';
-            }
-            else if (values.pass1 && values.pass2 && values.pass1 != values.pass2) {
-                this.errorMessage = 'Passwords are not same';
             }
             else {
                 this.errorMessage = '';
@@ -19099,7 +19094,7 @@ ManageRootPassComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MO
         let _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵloadQuery"]()) && (ctx.openPasswordModal = _t.first);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵloadQuery"]()) && (ctx.closePasswordModal = _t.first);
-    } }, decls: 42, vars: 5, consts: [["type", "button", "data-toggle", "modal", "data-target", "#root-pass-modal", "data-keyboard", "false", "data-backdrop", "static", 1, "d-none"], ["openPasswordModal", ""], ["id", "root-pass-modal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "root-pass-modal", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog", "modal-dialog-centered"], [3, "formGroup"], [1, "modal-content"], [1, "modal-header"], ["id", "modal-title-change-username", 1, "modal-title", "d-flex", "align-items-center"], [1, "icon", "icon-sm", "icon-shape", "icon-info", "rounded-circle", "shadow", "mr-3"], [1, "fas", "fa-key"], [1, "mb-0"], [1, "modal-body"], [1, "row"], [1, "col-sm-12"], [1, "form-group"], [1, "form-control-label"], [1, "input-group", "input-group-merge"], ["formControlName", "pass1", 1, "form-control", 3, "type"], [1, "input-group-append", "cursor-pointer", 3, "click"], [1, "input-group-text"], [1, "fas", "fa-eye"], ["formControlName", "pass2", 1, "form-control", 3, "type"], ["class", "px-5 pt-4 mt-4 delimiter-top text-center", 4, "ngIf"], [1, "modal-footer"], ["type", "submit", 1, "btn", "btn-primary", "rounded-pill", 3, "click"], ["type", "button", "data-dismiss", "modal", 1, "d-none"], ["closePasswordModal", ""], [1, "px-5", "pt-4", "mt-4", "delimiter-top", "text-center"], [1, "text-danger", "text-sm"]], template: function ManageRootPassComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 33, vars: 4, consts: [["type", "button", "data-toggle", "modal", "data-target", "#root-pass-modal", "data-keyboard", "false", "data-backdrop", "static", 1, "d-none"], ["openPasswordModal", ""], ["id", "root-pass-modal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "root-pass-modal", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog", "modal-dialog-centered"], ["id", "root-pass-form", 3, "formGroup"], [1, "modal-content"], [1, "modal-header"], ["id", "modal-title-change-username", 1, "modal-title", "d-flex", "align-items-center"], [1, "icon", "icon-sm", "icon-shape", "icon-info", "rounded-circle", "shadow", "mr-3"], [1, "fas", "fa-key"], [1, "mb-0"], [1, "modal-body"], [1, "row"], [1, "col-sm-12"], [1, "form-group"], [1, "form-control-label"], [1, "input-group", "input-group-merge"], ["formControlName", "pass1", 1, "form-control", 3, "type"], [1, "input-group-append", "cursor-pointer", 3, "click"], [1, "input-group-text"], [1, "fas", "fa-eye"], ["class", "px-5 mt-2 pt-2 delimiter-top text-center", 4, "ngIf"], [1, "modal-footer"], ["type", "submit", 1, "btn", "btn-primary", "rounded-pill", 3, "click"], ["type", "button", "data-dismiss", "modal", 1, "d-none"], ["closePasswordModal", ""], [1, "px-5", "mt-2", "pt-2", "delimiter-top", "text-center"], [1, "text-danger", "text-sm"]], template: function ManageRootPassComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "button", 0, 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Set Password");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -19126,7 +19121,7 @@ ManageRootPassComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MO
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](17, "div", 13);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](18, "div", 14);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](19, "label", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](20, "Enter password");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](20, "Enter your root password");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](21, "div", 16);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](22, "input", 17);
@@ -19139,32 +19134,16 @@ ManageRootPassComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MO
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](26, "div", 13);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](27, "div", 14);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](28, "label", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](29, "Enter password again");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](30, "div", 16);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](31, "input", 21);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](32, "div", 18);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ManageRootPassComponent_Template_div_click_32_listener() { return ctx.viewPass.pass2 = !ctx.viewPass.pass2; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](33, "span", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](34, "i", 20);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](26, ManageRootPassComponent_div_26_Template, 3, 1, "div", 21);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](27, "div", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](28, "button", 23);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ManageRootPassComponent_Template_button_click_28_listener() { return ctx.savePassword(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](29, "Done");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](35, ManageRootPassComponent_div_35_Template, 3, 1, "div", 22);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](36, "div", 23);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](37, "button", 24);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ManageRootPassComponent_Template_button_click_37_listener() { return ctx.savePassword(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](38, "Done");
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](39, "button", 25, 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](41, "Done");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](30, "button", 24, 25);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](32, "Done");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -19176,13 +19155,11 @@ ManageRootPassComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MO
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("formGroup", ctx.passFormGroup);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](17);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("type", ctx.viewPass.pass1 ? "text" : "password");
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("type", ctx.viewPass.pass2 ? "text" : "password");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.errorMessage);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵattribute"]("disabled", ctx.errorMessage || ctx.passFormGroup.invalid ? "disabled" : null);
-    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormControlName, _angular_common__WEBPACK_IMPORTED_MODULE_4__.NgIf], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJtYW5hZ2Utcm9vdC1wYXNzLmNvbXBvbmVudC5zY3NzIn0= */"] });
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormControlName, _angular_common__WEBPACK_IMPORTED_MODULE_4__.NgIf], styles: ["#root-pass-form[_ngcontent-%COMP%] {\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1hbmFnZS1yb290LXBhc3MuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxXQUFBO0FBQ0YiLCJmaWxlIjoibWFuYWdlLXJvb3QtcGFzcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiNyb290LXBhc3MtZm9ybSB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxuIl19 */"] });
 
 
 /***/ }),
