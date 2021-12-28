@@ -1,0 +1,20 @@
+lerts:
+- rule: DEPLOYMENT_FAILED
+- rule: DOMAIN_FAILED
+domains:
+- domain: pass.manender.com
+  type: PRIMARY
+  zone: manender.com
+name: angular-password-manager
+region: blr
+static_sites:
+- environment_slug: html
+  github:
+    branch: master
+    deploy_on_push: true
+    repo: manenderk/angular-password-manager
+  name: angular-password-manager
+  error_document: index.html
+  routes:
+  - path: /
+  source_dir: /dist/password-manager
